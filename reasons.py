@@ -9,11 +9,9 @@ class TorchDoubtLab:
         self.model = model
         self.dataset = test_dataset
         self.batch_size = batch_size
-
-        self.preds, self.pred_confs, self.labels = self.get_preds()
-
         self.test_loader = DataLoader(
             test_dataset, batch_size=batch_size, shuffle=False)
+        self.preds, self.pred_confs, self.labels = self.get_preds()
 
     def get_preds(self):
 
@@ -36,7 +34,7 @@ class TorchDoubtLab:
 
         return np.array(preds), np.array(pred_confs), np.array(labels)
 
-    def get_flagged_image(self, flagged_idx):
+    def get_flagged_images(self, flagged_idx):
         
         flagged_images = []
         for idx in flagged_idx:
