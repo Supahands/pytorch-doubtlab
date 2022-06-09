@@ -18,7 +18,11 @@ class CustomDataset(Dataset):
         image = cv2.imread(image_filepath)
         image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
         
-        label = image_filepath.split("\\")[-2]
+        try:
+            label = image_filepath.split("\\")[-2]
+        except IndexError:
+            label = image_filepath.split("/")[-2]
+            
         label = self.class_to_idx[label]
         
         if self.transform is not None:
